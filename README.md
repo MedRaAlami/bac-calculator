@@ -1,4 +1,4 @@
-# Bac Calculator 🇲🇦
+# Bac Calculator 
 
 This project is a **Moroccan Baccalaureate calculator** designed to help both Moroccan high school students and foreign students better understand Morocco’s high school system, specifically the final two years:
 - 1st year of Baccalaureate (equivalent to 11th grade in the American system)
@@ -46,4 +46,4 @@ This project is more than just a calculator — it’s also an introduction to t
 
 ---
 
-🛠 Built by a student, for students. This is my very first project on GitHub; feedback is welcome.
+Built by a student, for students. This is my very first project on GitHub; feedback is welcome.

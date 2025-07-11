@@ -3,7 +3,7 @@ import re
 
 def getscore(prompt):
     try:
-        score=float(input(prompt))
+        score = float(input(prompt))
     except ValueError:
         print("404 :D ")
         quit()
@@ -13,7 +13,7 @@ def getscore(prompt):
 
 def getchoice(prompt, valid_options):
     try:
-        choice=int(input(prompt))
+        choice = int(input(prompt))
     except ValueError:
         print("404 :D ")
         quit()
@@ -63,14 +63,14 @@ NCII = II * 2
 NCA = AR * 2
 
 if major1bac == 1:
-   Tot_r = NCFs + NCHGs + NCII + NCA
-   Regio = Tot_r/10
+   Totr = NCFs + NCHGs + NCII + NCA
+   Regio = Totr/10
 elif major1bac == 2:
-   Tot_r = NCFe + NCHGe + NCII + NCA
-   Regio = Tot_r/10
+   Totr = NCFe + NCHGe + NCII + NCA
+   Regio = Totr/10
 elif major1bac == 3:
-   Tot_r = NCFst + NCII + NCA
-   Regio = Tot_r/8
+   Totr = NCFst + NCII + NCA
+   Regio = Totr/8
 
 Regio = round(Regio, 2)
 print("Your regional bac exam results: ", Regio)
@@ -83,26 +83,41 @@ if major1bac == 1:
 1)Mathematical sciences [Science Math]
 2)Experimental sciences [Science Exp]
 """, [1,2])
-
+   
    if majorscience == 1:
-      majorsm=getchoice(
-         """Which stream within mathematical sciences did you choose in your second year of the baccalaureate:
-1)Mathematical sciences A [SM A]
-2)Mathematical sciences B [SM B]
-""", [1,2])
-      
-      MATHsm=getscore("Enter your math national exam result: ")
-      PCsm=getscore("Enter your physics and chemistry national exam result: ")
-      NCMsm = MATHsm * 9
-      NCPCsm = PCsm * 7
+    majorswitch=getchoice(
+        """Did you stay in Mathematical Sciences, or did you switch to Physical Sciences: 
+1)Mathematical Sciences [SM]
+2)Physical Sciences [SPC]
+""", [1, 2])
 
-      if majorsm == 2:
-         SIsm=getscore("Enter your engineering science national exam result: ")
-         NCSIsm = SIsm * 3
-      elif majorsm == 1:
-         SVTsm=getscore("Enter your life and earth sciences national exam result: ")
-         NCSVTsm = SVTsm * 3
+    if majorswitch == 1:
+        majorsm=getchoice(
+            """Which stream within Mathematical Sciences did you choose in your second year of the baccalaureate:
+1)Mathematical Sciences A [SM A]
+2)Mathematical Sciences B [SM B]
+""", [1, 2])
 
+        MATHsm=getscore("Enter your math national exam result: ")
+        PCsm=getscore("Enter your physics and chemistry national exam result: ")
+        NCMsm = MATHsm * 9
+        NCPCsm = PCsm * 7
+
+        if majorsm == 1:
+            SVTsm=getscore("Enter your life and earth sciences national exam result: ")
+            NCSVTsm = SVTsm * 3
+        elif majorsm == 2:
+            SIsm=getscore("Enter your engineering science national exam result: ")
+            NCSIsm = SIsm * 3
+
+    elif majorswitch == 2:
+        MATHspc=getscore("Enter your math national exam result: ")
+        PCspc=getscore("Enter your physics and chemistry national exam result: ")
+        SVTspc=getscore("Enter your life and earth sciences national exam result: ")
+        NCMspc = MATHspc * 7
+        NCPCspc = PCspc * 7
+        NCSVTspc = SVTspc * 5
+    
    elif majorscience == 2:
       majorsexp=getchoice(
          """Which stream within experimental sciences did you choose in your second year of the baccalaureate:
@@ -133,7 +148,7 @@ if major1bac == 1:
          NCSVA = SVA *5
 elif major1bac == 2:
    majoreco=getchoice(
-      """(Which stream within economics and management sciences did you choose in your second year of the baccalaureate:
+      """Which stream within economics and management sciences did you choose in your second year of the baccalaureate:
 1)Economic sciences [SE]
 2)Accounting management sciences [SGC]
 """, [1,2])
@@ -175,33 +190,37 @@ NCAN = ANG * 2
 NCPH = PHILO * 2
 
 if major1bac == 1:
-   if majorscience == 1:
-      if majorsm == 1:
-         Tot_n = NCMsm + NCPCsm + NCSVTsm + NCAN + NCPH
-         Natio = Tot_n/23
-      elif majorsm == 2:
-         Tot_n = NCMsm + NCPCsm + NCSIsm + NCAN + NCPH
-         Natio = Tot_n/23
-   elif majorscience == 2:
+    if majorscience == 1:
+        if majorswitch == 1:
+            if majorsm == 1:
+                Totn = NCMsm + NCPCsm + NCSVTsm + NCAN + NCPH
+                Natio = Totn / 23
+            elif majorsm == 2:
+                Totn = NCMsm + NCPCsm + NCSIsm + NCAN + NCPH
+                Natio = Totn / 23
+        elif majorswitch == 2:
+            Totn = NCMspc + NCPCspc + NCSVTspc + NCAN + NCPH
+            Natio = Totn / 23
+    elif majorscience == 2:
       if majorsexp == 1:
-         Tot_n = NCMsexp + NCPCpc + NCSVTpc + NCAN + NCPH
-         Natio = Tot_n/23
+         Totn = NCMsexp + NCPCpc + NCSVTpc + NCAN + NCPH
+         Natio = Totn/23
       elif majorsexp == 2:
-         Tot_n = NCMsexp + NCPCsvt + NCSVTsvt + NCAN + NCPH
-         Natio = Tot_n/23
+         Totn = NCMsexp + NCPCsvt + NCSVTsvt + NCAN + NCPH
+         Natio = Totn/23
       elif majorsexp == 3:
-         Tot_n = NCMsexp + NCPCagro + NCSVTagro + NCSVA + NCAN + NCPH
-         Natio = Tot_n/26
+         Totn = NCMsexp + NCPCagro + NCSVTagro + NCSVA + NCAN + NCPH
+         Natio = Totn/26
 elif major1bac == 2:
    if majoreco == 1:
-      Tot_n = NCMeco + NCCMFse + NCECOGENse + NCORGAse + NCAN + NCPH
-      Natio = Tot_n/21
+      Totn = NCMeco + NCCMFse + NCECOGENse + NCORGAse + NCAN + NCPH
+      Natio = Totn/21
    elif majoreco == 2:
-      Tot_n = NCMeco + NCCMFsgc + NCECOGENsgc + NCORGAsgc + NCAN + NCPH
-      Natio = Tot_n/23
+      Totn = NCMeco + NCCMFsgc + NCECOGENsgc + NCORGAsgc + NCAN + NCPH
+      Natio = Totn/23
 elif major1bac == 3:
-   Tot_n = NCMst + NCPCst + NCSIst + NCAN + NCPH
-   Natio = Tot_n/24
+   Totn = NCMst + NCPCst + NCSIst + NCAN + NCPH
+   Natio = Totn/24
 
 Natio = round(Natio, 2) 
 print("Your national bac exam results:", Natio)
@@ -209,12 +228,15 @@ print("Your national bac exam results:", Natio)
 natio_scores = []
 if major1bac == 1:
     if majorscience == 1:
+       if majorswitch == 1:
         natio_scores.extend([MATHsm, PCsm])
         if majorsm == 1:
             natio_scores.append(SVTsm)
         elif majorsm == 2:
             natio_scores.append(SIsm)
-        elif majorscience == 2:
+       elif majorswitch == 2:
+            natio_scores.extend([MATHspc, PCspc, SVTspc])
+    elif majorscience == 2:
             natio_scores.append(MATHsexp)
             if majorsexp == 1:
                 natio_scores.extend([PCpc, SVTpc])
@@ -231,8 +253,8 @@ if major1bac == 1:
     elif major1bac == 3:
         natio_scores.extend([MATHst, PCst, SIst])
 
-    natio_scores.extend([ANG, PHILO])
-    zero_natio = 0 in natio_scores
+natio_scores.extend([ANG, PHILO])
+zero_natio = 0 in natio_scores
 
 #moyenne générale#
 
@@ -257,7 +279,7 @@ MoyGen = round(MoyGen, 2)
 print(f"Full Name: {first_name} {last_name}")
 print("Your overall baccalaureate average is: ", MoyGen)
 
-if zero_natio:
+if zero_natio == True:
     print("You have a 0 in one of the national exam subjects, to the remedial exam")
 else:
     if MoyGen >= 10 and MoyGen < 12:
